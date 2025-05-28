@@ -6,11 +6,11 @@ public class Person {
     String surname;
     String firsname;
     Profession profession;
-    List<Crenau> crenaus;
+    List<Crenau> crenaux;
 
-    public Person(String surname, List<Crenau> crenaus, Profession profession, String firsname) {
+    public Person(String surname, List<Crenau> crenaux, Profession profession, String firsname) {
         this.surname = surname;
-        this.crenaus = crenaus;
+        this.crenaux = crenaux;
         this.profession = profession;
         this.firsname = firsname;
     }
@@ -24,11 +24,11 @@ public class Person {
     }
 
     public List<Crenau> getCrenaus() {
-        return crenaus;
+        return crenaux;
     }
 
     public void setCrenaus(List<Crenau> crenaus) {
-        this.crenaus = crenaus;
+        this.crenaux = crenaus;
     }
 
     public Profession getProfession() {
