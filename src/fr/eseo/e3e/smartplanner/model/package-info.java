@@ -1,0 +1,1 @@
+package fr.eseo.e3e.smartplanner.model;
