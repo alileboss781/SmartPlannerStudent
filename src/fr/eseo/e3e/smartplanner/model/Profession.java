@@ -1,4 +1,7 @@
 package fr.eseo.e3e.smartplanner.model;
 
-public class Profession {
+public enum Profession {
+    Student,
+    freelance,
+    Doctor
 }
