@@ -39,8 +39,12 @@ public class Matiere {
     }
 
 
-
-
-
-
+    @Override
+    public String toString() {
+        return "Matiere{" +
+                "nom='" + nom + '\'' +
+                ", dateExamen=" + dateExamen +
+                ", difficulte=" + difficulte +
+                '}';
+    }
 }
