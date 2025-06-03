@@ -22,16 +22,18 @@ public class Planificateur {
     }
     public void planifier(List<Crenau> crenaux) {
         sessions.clear();
-        Iterator<Crenau> itCrenau = crenaux.iterator();
+        // On fait une copie de la liste pour retirer les créneaux déjà utilisés
+        List<Crenau> crenauxDispo = new java.util.ArrayList<>(crenaux);
 
         for (Matiere matiere : matieres) {
             int nbSessions = matiere.getDifficulte();
             for (int i = 0; i < nbSessions; i++) {
-                if (!itCrenau.hasNext()) {
+                if (crenauxDispo.isEmpty()) {
                     System.out.println("Plus de créneaux disponibles pour planifier toutes les sessions.");
                     return;
                 }
-                Crenau c = itCrenau.next();
+                // On prend et retire le premier créneau disponible
+                Crenau c = crenauxDispo.remove(0);
                 LocalDateTime sessionDebut = c.getDebut();
                 Duration duree = Duration.between(c.getDebut(), c.getFin());
                 if (duree.isZero() || duree.isNegative()) {

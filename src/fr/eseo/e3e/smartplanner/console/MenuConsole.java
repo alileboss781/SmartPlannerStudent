@@ -90,9 +90,13 @@ public class MenuConsole {
                 case "2" -> showMatieres();
                 case "3" -> addCrenau();
                 case "4" -> showCrenaux();
-                case "5" -> {
-                    planificateur.planifier(studentConnected.getCrenaux());
-                    System.out.println("Planification terminée !");
+                case "5" ->  {
+                    if (studentConnected.getCrenaux().isEmpty()) {
+                        System.out.println("Aucun créneau disponible, veuillez en ajouter avant de planifier !");
+                    } else {
+                        planificateur.planifier(studentConnected.getCrenaux());
+                        System.out.println("Planification terminée !");
+                    }
                 }
                 case "6" -> showSessions(planificateur.getSessions());
                 case "7" -> markSessionDone(planificateur.getSessions());
