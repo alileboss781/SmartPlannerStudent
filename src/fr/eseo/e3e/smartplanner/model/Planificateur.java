@@ -1,7 +1,5 @@
 package fr.eseo.e3e.smartplanner.model;
 
-import fr.eseo.e3e.smartplanner.SessionRevision;
-
 import java.util.List;
 import java.time.Duration;
 import java.time.LocalDateTime;

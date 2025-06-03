@@ -1,9 +1,6 @@
-package fr.eseo.e3e.smartplanner;
-
-import fr.eseo.e3e.smartplanner.model.Matiere;
+package fr.eseo.e3e.smartplanner.model;
 
 import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class SessionRevision {

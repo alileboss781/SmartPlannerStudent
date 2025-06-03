@@ -1,10 +1,9 @@
 package fr.eseo.e3e.smartplanner.console;
 import fr.eseo.e3e.smartplanner.model.*;
-import fr.eseo.e3e.smartplanner.SessionRevision;
+import fr.eseo.e3e.smartplanner.model.SessionRevision;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Duration;
 import java.util.*;
 
 public class MenuConsole {
