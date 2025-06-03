@@ -56,11 +56,9 @@ public class SessionRevision {
 
     @Override
     public String toString() {
-        return "SessionRevision{" +
-                "maniere=" + maniere +
-                ", date=" + date +
-                ", duree=" + duree +
-                ", effectuee=" + effectuee +
-                '}';
+        return "Matière : " + maniere.getNom() +
+                " | Début : " + date +
+                " | Durée : " + duree.toHours() + "h" +
+                " | Effectuée : " + (effectuee ? "Oui" : "Non");
     }
 }
