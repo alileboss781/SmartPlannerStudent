@@ -23,12 +23,12 @@ public class Person {
         this.surname = surname;
     }
 
-    public List<Crenau> getCrenaus() {
+    public List<Crenau> getCrenaux() {
         return crenaux;
     }
 
-    public void setCrenaus(List<Crenau> crenaus) {
-        this.crenaux = crenaus;
+    public void setCrenaux(List<Crenau> crenaux) {
+        this.crenaux = crenaux;
     }
 
     public Profession getProfession() {

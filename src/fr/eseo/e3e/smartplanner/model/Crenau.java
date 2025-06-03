@@ -1,36 +1,34 @@
 package fr.eseo.e3e.smartplanner.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Crenau {
 
-    LocalDate debut;
-    LocalDate fin;
+    LocalDateTime debut;
+    LocalDateTime fin;
 
-
-    public Crenau(LocalDate debut, LocalDate fin) {
+    public Crenau(LocalDateTime debut, LocalDateTime fin) {
         this.debut = debut;
         this.fin = fin;
     }
 
 
-    public LocalDate getDebut() {
+    public LocalDateTime getDebut() {
         return debut;
     }
 
-    public void setDebut(LocalDate debut) {
+    public void setDebut(LocalDateTime debut) {
         this.debut = debut;
     }
 
-    public LocalDate getFin() {
+    public LocalDateTime getFin() {
         return fin;
     }
 
-    public void setFin(LocalDate fin) {
+    public void setFin(LocalDateTime fin) {
         this.fin = fin;
     }
-
-
 
 
 
