@@ -4,15 +4,16 @@ import fr.eseo.e3e.smartplanner.model.Matiere;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class SessionRevision {
 
     Matiere maniere;
-    LocalDate date;
+    LocalDateTime date;
     Duration duree;
     boolean effectuee;
 
-    public SessionRevision(Matiere maniere, LocalDate date, Duration duree, boolean effectuee) {
+    public SessionRevision(Matiere maniere, LocalDateTime date, Duration duree, boolean effectuee) {
         this.maniere = maniere;
         this.date = date;
         this.duree = duree;
@@ -28,11 +29,11 @@ public class SessionRevision {
         this.maniere = maniere;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
