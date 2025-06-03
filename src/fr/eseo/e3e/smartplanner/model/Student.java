@@ -5,10 +5,20 @@ import java.util.List;
 
 public class Student extends  Person {
     List<Matiere> matieres;
-    public Student(String surname, List<Crenau> crenaus, Profession profession, String firsname) {
+    private String motDePasse;
+    public Student(String surname, List<Crenau> crenaus, Profession profession, String firsname, String motDePasse) {
         super(surname, crenaus, profession, firsname);
         this.matieres= new ArrayList<>();
+        this.motDePasse=motDePasse;
 
+    }
+
+    public String getMotDePasse() {
+        return motDePasse;
+    }
+
+    public void setMotDePasse(String motDePasse) {
+        this.motDePasse = motDePasse;
     }
 
     public List<Matiere> getMatieres() {
