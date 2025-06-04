@@ -9,6 +9,7 @@ public class SessionRevision {
     LocalDateTime date;
     Duration duree;
     boolean effectuee;
+    private String commentaire = ""; // <-- AJOUTE ICI
 
     public SessionRevision(Matiere maniere, LocalDateTime date, Duration duree, boolean effectuee) {
         this.maniere = maniere;
@@ -17,6 +18,13 @@ public class SessionRevision {
         this.effectuee = effectuee;
     }
 
+    public String getCommentaire() {
+        return commentaire;
+    }
+
+    public void setCommentaire(String commentaire) {
+        this.commentaire = commentaire;
+    }
 
     public Matiere getManiere() {
         return maniere;
@@ -50,12 +58,12 @@ public class SessionRevision {
     public void marquerEffectuee() {
         this.effectuee = true;
     }
-
     @Override
     public String toString() {
         return "Matière : " + maniere.getNom() +
                 " | Début : " + date +
                 " | Durée : " + duree.toHours() + "h" +
-                " | Effectuée : " + (effectuee ? "Oui" : "Non");
+                " | Effectuée : " + (effectuee ? "Oui" : "Non") +
+                (commentaire.isEmpty() ? "" : " | Commentaire : " + commentaire);
     }
 }
