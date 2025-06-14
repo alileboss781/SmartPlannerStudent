@@ -61,13 +61,8 @@ public class SessionRevision {
     public void marquerEffectuee() {
         this.effectuee = true;
     }
-<<<<<<< HEAD
 
 
-
-
-=======
->>>>>>> 5c6ea0e6c91d4718c920c2d81e20682cfdbc3bde
     @Override
     public String toString() {
         return "Matière : " + matiere.getNom() +

@@ -75,17 +75,6 @@ public class MenuConsole {
         System.out.print("Prenom : ");
         String firstname = scanner.nextLine();
 
-<<<<<<< HEAD
-        Profession profession = Profession.Student;
-        List<Crenau> crenaus = new ArrayList<>();
-        Student newStudent = new Student(surname, crenaus, profession, firstname, mdp);
-        students.add(newStudent);
-
-        // 🔽 SAUVEGARDE dans le fichier partagé
-        SauvegardeInfos.sauvegarderEtudiant(newStudent);
-
-        System.out.println("Compte créé avec succès !");
-=======
         String mdp;
         java.io.Console console = System.console();
         if (console != null) {
@@ -106,11 +95,12 @@ public class MenuConsole {
             List<Crenau> crenaus = new ArrayList<>();
             Student newStudent = new Student(surname, crenaus, profession, firstname, hashBase64, saltBase64);
             students.add(newStudent);
+
+            SauvegardeInfos.sauvegarderEtudiant(newStudent);
             System.out.println("Compte cree avec succes !");
         } catch (NoSuchAlgorithmException e) {
             System.out.println("Erreur lors du hachage du mot de passe.");
         }
->>>>>>> 5c6ea0e6c91d4718c920c2d81e20682cfdbc3bde
     }
 
     private void studentMenu() {
@@ -151,7 +141,6 @@ public class MenuConsole {
                 case "8" -> progression.afficherResume(planificateur.getSessions());
                 case "9" -> addCommentToSession(planificateur.getSessions());
                 case "0" -> {
-                    SauvegardeInfos.sauvegarderEtudiant(studentConnected); // sauvegarde avant déconnexion
                     studentConnected = null;
                     return;
                 }
@@ -179,16 +168,9 @@ public class MenuConsole {
 
         Matiere matiere = new Matiere(nom, dateExamen, difficulte);
         studentConnected.ajouterMatiere(matiere);
-<<<<<<< HEAD
 
-
-        // 🔽 Sauvegarde de la matière dans le fichier texte
         SauvegardeInfos.sauvegarderMatiere(studentConnected, matiere);
-
-        System.out.println("Matière ajoutée !");
-=======
         System.out.println("Matiere ajoutee !");
->>>>>>> 5c6ea0e6c91d4718c920c2d81e20682cfdbc3bde
     }
 
     private void showMatieres() {

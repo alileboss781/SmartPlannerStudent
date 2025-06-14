@@ -20,9 +20,6 @@ public class SauvegardeInfos {
             writer.write("Nom:" + e.getSurname() + "\n");
             writer.write("Prenom:" + e.getFirsname() + "\n");
             writer.write("MotDePasse:" + e.getMotDePasseHash() + "\n");
-
-
-
             writer.write("\n"); // Saut de ligne entre étudiants
 
         } catch (IOException ex) {
@@ -44,7 +41,8 @@ public class SauvegardeInfos {
     }
 
 
-    public static void sauvegarderSessions(Student e, Matiere m, SessionRevision s) {
+
+    /*public static void sauvegarderSessions(Student e, Matiere m, SessionRevision s) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FICHIER_ETUDIANTS, true))) {
             writer.write("--- Sessions de révision ---\n");
             writer.write("Etudiant:" + e.getSurname() + "_" + e.getFirsname() + "\n");
@@ -55,6 +53,8 @@ public class SauvegardeInfos {
             System.err.println("Erreur lors de la sauvegarde de la matière : " + ex.getMessage());
         }
     }
+
+     */
 
 
 
