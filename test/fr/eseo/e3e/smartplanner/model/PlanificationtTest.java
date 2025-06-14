@@ -27,7 +27,7 @@ public class PlanificationtTest {
 
         Student s = new Student(surname, crenau, profession, firstname, hashBase64, saltBase64);
 
-        Matiere m1 = new Matiere("Maths", LocalDate.of(2025, 6, 15), 2);
+        Matiere m1 = new Matiere("Maths", LocalDate.of(2025, 6, 20), 2);
         Matiere m2 = new Matiere("Physique", LocalDate.of(2025, 6, 20), 1);
         s.ajouterMatiere(m1);
         s.ajouterMatiere(m2);
@@ -41,8 +41,6 @@ public class PlanificationtTest {
         List<SessionRevision> sessions = new ArrayList<>();
         Planificateur planificateur = new Planificateur(s.getMatieres(), sessions);
         planificateur.planifier(creneaux);
-
-        // Il doit y avoir 3 sessions (2 pour Maths, 1 pour Physique)
         assertEquals(3, sessions.size());
         long mathsCount = sessions.stream().filter(sr -> sr.getManiere().getNom().equals("Maths")).count();
         long physiqueCount = sessions.stream().filter(sr -> sr.getManiere().getNom().equals("Physique")).count();
@@ -77,7 +75,7 @@ public class PlanificationtTest {
         Planificateur planificateur = new Planificateur(s.getMatieres(), sessions);
         planificateur.planifier(creneaux);
 
-        // Seule la session avant le 12 juin doit être planifiée
+
         assertEquals(1, sessions.size());
         assertTrue(sessions.get(0).getDate().toLocalDate().isBefore(m.getDateExamen()));
     }

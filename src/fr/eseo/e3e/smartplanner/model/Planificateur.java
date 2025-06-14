@@ -20,6 +20,7 @@ public class Planificateur {
     public List<SessionRevision> getSessions() {
         return sessions;
     }
+    // ...existing code...
     public void planifier(List<Crenau> crenaux) {
         sessions.clear();
         List<Crenau> crenauxDispo = new java.util.ArrayList<>(crenaux);
@@ -32,13 +33,12 @@ public class Planificateur {
         int totalSessions = 0;
         for (int n : sessionsRestantes) totalSessions += n;
 
-        int cIndex = 0;
-        while (cIndex < crenauxDispo.size() && totalSessions > 0) {
+        while (!crenauxDispo.isEmpty() && totalSessions > 0) {
+            boolean sessionPlanifiee = false;
             for (int m = 0; m < matieres.size(); m++) {
                 if (sessionsRestantes[m] > 0) {
-                    // Cherche le prochain créneau avant la date d'examen de la matière
                     int foundIndex = -1;
-                    for (int j = cIndex; j < crenauxDispo.size(); j++) {
+                    for (int j = 0; j < crenauxDispo.size(); j++) {
                         if (crenauxDispo.get(j).getDebut().toLocalDate().isBefore(matieres.get(m).getDateExamen())) {
                             foundIndex = j;
                             break;
@@ -55,9 +55,15 @@ public class Planificateur {
                         sessions.add(session);
                         sessionsRestantes[m]--;
                         totalSessions--;
+                        sessionPlanifiee = true;
+                    } else {
+                        sessionsRestantes[m] = 0;
                     }
-                    // Si aucun créneau avant la date d'examen, on ne planifie plus pour cette matière
                 }
+            }
+            // Si aucune session n'a été planifiée lors de ce tour, on sort pour éviter une boucle infinie
+            if (!sessionPlanifiee) {
+                break;
             }
         }
         if (totalSessions > 0) {
