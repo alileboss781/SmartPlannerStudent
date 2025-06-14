@@ -14,7 +14,7 @@ public class Progression {
 
     // Pourcentage moyen de progression par matière
     public double calculerProgressionParMatiere(List<SessionRevision> sessions){
-        Map<Matiere, Double> progressionParMatiere = progressionParMatière(sessions);
+        Map<Matiere, Double> progressionParMatiere = progressionParMatiere(sessions);
         if (progressionParMatiere.isEmpty()) return 0.0;
         double somme = 0.0;
         for (double val : progressionParMatiere.values()) {
@@ -24,7 +24,7 @@ public class Progression {
     }
 
     // Pourcentage de progression pour chaque matière
-    public Map<Matiere,Double> progressionParMatière(List<SessionRevision> sessions){
+    public Map<Matiere,Double> progressionParMatiere(List<SessionRevision> sessions){
         Map<Matiere, Integer> totalParMatiere = new HashMap<>();
         Map<Matiere, Integer> effectueesParMatiere = new HashMap<>();
         for (SessionRevision s : sessions) {
@@ -46,7 +46,7 @@ public class Progression {
     // Affiche un résumé de la progression
     public void afficherResume(List<SessionRevision> sessions){
         System.out.println("Progression globale : " + calculerProgressionGloble(sessions) + "%");
-        Map<Matiere, Double> progression = progressionParMatière(sessions);
+        Map<Matiere, Double> progression = progressionParMatiere(sessions);
         for (Map.Entry<Matiere, Double> entry : progression.entrySet()) {
             System.out.println("Matière : " + entry.getKey().getNom() + " - Progression : " + entry.getValue() + "%");
         }

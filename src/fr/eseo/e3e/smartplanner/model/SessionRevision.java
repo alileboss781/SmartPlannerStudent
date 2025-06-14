@@ -12,6 +12,7 @@ public class SessionRevision {
     LocalDateTime date;
     Duration duree;
     boolean effectuee;
+    private String commentaire = ""; // <-- AJOUTE ICI
 
     public SessionRevision(Matiere matiere, LocalDateTime date, Duration duree, boolean effectuee) {
         this.matiere = matiere;
@@ -20,6 +21,13 @@ public class SessionRevision {
         this.effectuee = effectuee;
     }
 
+    public String getCommentaire() {
+        return commentaire;
+    }
+
+    public void setCommentaire(String commentaire) {
+        this.commentaire = commentaire;
+    }
 
     public Matiere getMatiere() {
         return matiere;
@@ -53,15 +61,19 @@ public class SessionRevision {
     public void marquerEffectuee() {
         this.effectuee = true;
     }
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> 5c6ea0e6c91d4718c920c2d81e20682cfdbc3bde
     @Override
     public String toString() {
         return "Matière : " + matiere.getNom() +
                 " | Début : " + date +
                 " | Durée : " + duree.toHours() + "h" +
-                " | Effectuée : " + (effectuee ? "Oui" : "Non");
+                " | Effectuée : " + (effectuee ? "Oui" : "Non") +
+                (commentaire.isEmpty() ? "" : " | Commentaire : " + commentaire);
     }
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Student extends  Person {
     List<Matiere> matieres;
+<<<<<<< HEAD
     private String motDePasse;
     private List<SessionRevision> sessions;
 
@@ -12,16 +13,41 @@ public class Student extends  Person {
         super(surname, crenaus, profession, firsname);
         this.matieres= new ArrayList<>();
         this.motDePasse=motDePasse;
+=======
+    private String motDePasseHash;
+    private String saltBase64;
+>>>>>>> 5c6ea0e6c91d4718c920c2d81e20682cfdbc3bde
 
+    public Student(String surname, List<Crenau> crenaus, Profession profession, String firsname, String motDePasseHash, String saltBase64) {
+        super(surname, crenaus, profession, firsname);
+        this.matieres = new ArrayList<>();
+        this.motDePasseHash = motDePasseHash;
+        this.saltBase64 = saltBase64;
     }
 
-    public String getMotDePasse() {
+    public String getMotDePasseHash() {
+        return motDePasseHash;
+    }
+
+    public void setMotDePasseHash(String motDePasseHash) {
+        this.motDePasseHash = motDePasseHash;
+    }
+
+    public String getSaltBase64() {
+        return saltBase64;
+    }
+
+    public void setSaltBase64(String saltBase64) {
+        this.saltBase64 = saltBase64;
+    }
+
+    /*public String getMotDePasse() {
         return motDePasse;
     }
 
     public void setMotDePasse(String motDePasse) {
         this.motDePasse = motDePasse;
-    }
+    }*/
 
     public List<Matiere> getMatieres() {
         return matieres;

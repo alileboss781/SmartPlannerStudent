@@ -35,28 +35,54 @@ public class Planificateur {
     public List<SessionRevision> getSessions() {
         return sessions;
     }
+    // ...existing code...
     public void planifier(List<Crenau> crenaux) {
         sessions.clear();
-        // On fait une copie de la liste pour retirer les créneaux déjà utilisés
         List<Crenau> crenauxDispo = new java.util.ArrayList<>(crenaux);
 
-        for (Matiere matiere : matieres) {
-            int nbSessions = matiere.getDifficulte();
-            for (int i = 0; i < nbSessions; i++) {
-                if (crenauxDispo.isEmpty()) {
-                    System.out.println("Plus de créneaux disponibles pour planifier toutes les sessions.");
-                    return;
+        int[] sessionsRestantes = new int[matieres.size()];
+        for (int i = 0; i < matieres.size(); i++) {
+            sessionsRestantes[i] = matieres.get(i).getDifficulte();
+        }
+
+        int totalSessions = 0;
+        for (int n : sessionsRestantes) totalSessions += n;
+
+        while (!crenauxDispo.isEmpty() && totalSessions > 0) {
+            boolean sessionPlanifiee = false;
+            for (int m = 0; m < matieres.size(); m++) {
+                if (sessionsRestantes[m] > 0) {
+                    int foundIndex = -1;
+                    for (int j = 0; j < crenauxDispo.size(); j++) {
+                        if (crenauxDispo.get(j).getDebut().toLocalDate().isBefore(matieres.get(m).getDateExamen())) {
+                            foundIndex = j;
+                            break;
+                        }
+                    }
+                    if (foundIndex != -1) {
+                        Crenau c = crenauxDispo.remove(foundIndex);
+                        LocalDateTime sessionDebut = c.getDebut();
+                        Duration duree = Duration.between(c.getDebut(), c.getFin());
+                        if (duree.isZero() || duree.isNegative()) {
+                            duree = Duration.ofHours(2);
+                        }
+                        SessionRevision session = new SessionRevision(matieres.get(m), sessionDebut, duree, false);
+                        sessions.add(session);
+                        sessionsRestantes[m]--;
+                        totalSessions--;
+                        sessionPlanifiee = true;
+                    } else {
+                        sessionsRestantes[m] = 0;
+                    }
                 }
-                // On prend et retire le premier créneau disponible
-                Crenau c = crenauxDispo.remove(0);
-                LocalDateTime sessionDebut = c.getDebut();
-                Duration duree = Duration.between(c.getDebut(), c.getFin());
-                if (duree.isZero() || duree.isNegative()) {
-                    duree = Duration.ofHours(2); // Valeur par défaut si problème
-                }
-                SessionRevision session = new SessionRevision(matiere, sessionDebut, duree, false);
-                sessions.add(session);
             }
+            // Si aucune session n'a été planifiée lors de ce tour, on sort pour éviter une boucle infinie
+            if (!sessionPlanifiee) {
+                break;
+            }
+        }
+        if (totalSessions > 0) {
+            System.out.println("Plus de créneaux disponibles pour planifier toutes les sessions avant les examens.");
         }
     }
 }
