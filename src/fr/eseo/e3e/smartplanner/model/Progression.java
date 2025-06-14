@@ -28,7 +28,7 @@ public class Progression {
         Map<Matiere, Integer> totalParMatiere = new HashMap<>();
         Map<Matiere, Integer> effectueesParMatiere = new HashMap<>();
         for (SessionRevision s : sessions) {
-            Matiere m = s.getManiere();
+            Matiere m = s.getMatiere();
             totalParMatiere.put(m, totalParMatiere.getOrDefault(m, 0) + 1);
             if (s.isEffectuee()) {
                 effectueesParMatiere.put(m, effectueesParMatiere.getOrDefault(m, 0) + 1);

@@ -1,5 +1,6 @@
 package fr.eseo.e3e.smartplanner.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -14,7 +15,21 @@ public class Planificateur {
         this.sessions = session;
     }
     public void ajouterMatiere(Matiere m){
+
         matieres.add(m);
+    }
+
+
+    public List<Matiere> getMatieres() {
+        return matieres;
+    }
+
+    public void setMatieres(List<Matiere> matieres) {
+        this.matieres = matieres;
+    }
+
+    public void setSessions(List<SessionRevision> sessions) {
+        this.sessions = sessions;
     }
 
     public List<SessionRevision> getSessions() {

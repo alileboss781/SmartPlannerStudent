@@ -6,6 +6,8 @@ import java.util.List;
 public class Student extends  Person {
     List<Matiere> matieres;
     private String motDePasse;
+    private List<SessionRevision> sessions;
+
     public Student(String surname, List<Crenau> crenaus, Profession profession, String firsname, String motDePasse) {
         super(surname, crenaus, profession, firsname);
         this.matieres= new ArrayList<>();
@@ -34,4 +36,11 @@ public class Student extends  Person {
         matieres.remove(matiere);
     }
 
+    public List<SessionRevision> getListeSessions() {
+        return this.sessions;
+    }
+
+    public List<Crenau> getListeCrenau() {
+        return this.crenaux;
+    }
 }

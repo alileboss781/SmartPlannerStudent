@@ -3,27 +3,30 @@ package fr.eseo.e3e.smartplanner.model;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
+
+
+
 public class SessionRevision {
 
-    Matiere maniere;
+    Matiere matiere;
     LocalDateTime date;
     Duration duree;
     boolean effectuee;
 
-    public SessionRevision(Matiere maniere, LocalDateTime date, Duration duree, boolean effectuee) {
-        this.maniere = maniere;
+    public SessionRevision(Matiere matiere, LocalDateTime date, Duration duree, boolean effectuee) {
+        this.matiere = matiere;
         this.date = date;
         this.duree = duree;
         this.effectuee = effectuee;
     }
 
 
-    public Matiere getManiere() {
-        return maniere;
+    public Matiere getMatiere() {
+        return matiere;
     }
 
-    public void setManiere(Matiere maniere) {
-        this.maniere = maniere;
+    public void setMatiere(Matiere matiere) {
+        this.matiere = matiere;
     }
 
     public LocalDateTime getDate() {
@@ -51,9 +54,12 @@ public class SessionRevision {
         this.effectuee = true;
     }
 
+
+
+
     @Override
     public String toString() {
-        return "Matière : " + maniere.getNom() +
+        return "Matière : " + matiere.getNom() +
                 " | Début : " + date +
                 " | Durée : " + duree.toHours() + "h" +
                 " | Effectuée : " + (effectuee ? "Oui" : "Non");

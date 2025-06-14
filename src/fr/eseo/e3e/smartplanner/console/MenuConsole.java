@@ -1,4 +1,5 @@
 package fr.eseo.e3e.smartplanner.console;
+import fr.eseo.e3e.smartplanner.files.SauvegardeInfos;
 import fr.eseo.e3e.smartplanner.model.*;
 import fr.eseo.e3e.smartplanner.model.SessionRevision;
 
@@ -63,6 +64,10 @@ public class MenuConsole {
         List<Crenau> crenaus = new ArrayList<>();
         Student newStudent = new Student(surname, crenaus, profession, firstname, mdp);
         students.add(newStudent);
+
+        // 🔽 SAUVEGARDE dans le fichier partagé
+        SauvegardeInfos.sauvegarderEtudiant(newStudent);
+
         System.out.println("Compte créé avec succès !");
     }
 
@@ -102,6 +107,7 @@ public class MenuConsole {
                 case "7" -> markSessionDone(planificateur.getSessions());
                 case "8" -> progression.afficherResume(planificateur.getSessions());
                 case "0" -> {
+                    SauvegardeInfos.sauvegarderEtudiant(studentConnected); // sauvegarde avant déconnexion
                     studentConnected = null;
                     return;
                 }
@@ -120,6 +126,11 @@ public class MenuConsole {
 
         Matiere matiere = new Matiere(nom, dateExamen, difficulte);
         studentConnected.ajouterMatiere(matiere);
+
+
+        // 🔽 Sauvegarde de la matière dans le fichier texte
+        SauvegardeInfos.sauvegarderMatiere(studentConnected, matiere);
+
         System.out.println("Matière ajoutée !");
     }
 
