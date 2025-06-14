@@ -19,7 +19,7 @@ public class SauvegardeInfos {
             // Connexion
             writer.write("Nom:" + e.getSurname() + "\n");
             writer.write("Prenom:" + e.getFirsname() + "\n");
-            writer.write("MotDePasse:" + e.getMotDePasse() + "\n");
+            writer.write("MotDePasse:" + e.getMotDePasseHash() + "\n");
 
 
 
