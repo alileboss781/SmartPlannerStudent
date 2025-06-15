@@ -1,16 +1,21 @@
 package fr.eseo.e3e.smartplanner.console;
+import fr.eseo.e3e.smartplanner.files.ChargerInfos;
 import fr.eseo.e3e.smartplanner.files.SauvegardeInfos;
 import fr.eseo.e3e.smartplanner.model.*;
 import fr.eseo.e3e.smartplanner.model.SessionRevision;
 
+import java.io.Console;
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
 public class MenuConsole {
     private final List<Student> students = new ArrayList<>();
-    private Student studentConnected = null;
+    public Student studentConnected = null;
     private final Scanner scanner = new Scanner(System.in);
 
     public void start() {
@@ -41,7 +46,7 @@ public class MenuConsole {
         String firstname = scanner.nextLine();
 
         String mdp;
-        java.io.Console console = System.console();
+        Console console = System.console();
         if (console != null) {
             char[] pwdArray = console.readPassword("Mot de passe : ");
             mdp = new String(pwdArray);
@@ -50,15 +55,22 @@ public class MenuConsole {
             mdp = scanner.nextLine();
         }
 
-        for (Student s : students) {
+        // Étape 1 : Charger les comptes existants
+        List<Student> etudiants = ChargerInfos.chargerEtudiantsConnexion();
+
+        for (Student s : etudiants) {
             if (s.getSurname().equals(surname) && s.getFirsname().equals(firstname)) {
                 try {
                     byte[] storedHash = PasswordUtils.fromBase64(s.getMotDePasseHash());
                     byte[] salt = PasswordUtils.fromBase64(s.getSaltBase64());
                     if (PasswordUtils.verifyPassword(mdp, storedHash, salt)) {
                         studentConnected = s;
+
+
+
                         System.out.println("Connexion reussie !");
                         studentMenu();
+
                         return;
                     }
                 } catch (Exception e) {
@@ -66,8 +78,10 @@ public class MenuConsole {
                 }
             }
         }
+
         System.out.println("Identifiants incorrects.");
     }
+
 
     private void createAccount() {
         System.out.print("Nom : ");
@@ -76,7 +90,7 @@ public class MenuConsole {
         String firstname = scanner.nextLine();
 
         String mdp;
-        java.io.Console console = System.console();
+        Console console = System.console();
         if (console != null) {
             char[] pwdArray = console.readPassword("Mot de passe : ");
             mdp = new String(pwdArray);
@@ -107,6 +121,8 @@ public class MenuConsole {
         List<SessionRevision> sessions = new ArrayList<>();
         Planificateur planificateur = new Planificateur(studentConnected.getMatieres(), sessions);
         Progression progression = new Progression();
+        // Étape 2 : Charger ses matières
+       ChargerInfos.chargerMatieresPour(studentConnected);
 
         while (true) {
             System.out.println("\n--- Menu etudiant ---");
@@ -133,6 +149,7 @@ public class MenuConsole {
                         System.out.println("Aucun creneau disponible, veuillez en ajouter avant de planifier !");
                     } else {
                         planificateur.planifier(studentConnected.getCrenaux());
+
                         System.out.println("Planification terminee !");
                     }
                 }
@@ -224,6 +241,7 @@ public class MenuConsole {
     }
 
     private void showSessions(List<SessionRevision> sessions) {
+
         if (sessions.isEmpty()) {
             System.out.println("Aucune session planifiee.");
         } else {
@@ -249,7 +267,7 @@ public class MenuConsole {
     }
 
     public static void main(String[] args) {
-        System.setOut(new java.io.PrintStream(System.out, true, java.nio.charset.StandardCharsets.UTF_8));
+        System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));
         new MenuConsole().start();
     }
 

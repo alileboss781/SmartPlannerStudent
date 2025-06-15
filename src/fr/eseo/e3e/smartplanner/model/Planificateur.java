@@ -1,14 +1,19 @@
 package fr.eseo.e3e.smartplanner.model;
 
+import fr.eseo.e3e.smartplanner.files.SauvegardeInfos;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Iterator;
 
+
+
 public class Planificateur {
     List<Matiere> matieres;
     List<SessionRevision> sessions;
+
 
     public Planificateur(List<Matiere> matieres, List<SessionRevision> session) {
         this.matieres = matieres;
@@ -38,7 +43,7 @@ public class Planificateur {
     // ...existing code...
     public void planifier(List<Crenau> crenaux) {
         sessions.clear();
-        List<Crenau> crenauxDispo = new java.util.ArrayList<>(crenaux);
+        List<Crenau> crenauxDispo = new ArrayList<>(crenaux);
 
         int[] sessionsRestantes = new int[matieres.size()];
         for (int i = 0; i < matieres.size(); i++) {
@@ -68,6 +73,10 @@ public class Planificateur {
                         }
                         SessionRevision session = new SessionRevision(matieres.get(m), sessionDebut, duree, false);
                         sessions.add(session);
+
+
+
+
                         sessionsRestantes[m]--;
                         totalSessions--;
                         sessionPlanifiee = true;

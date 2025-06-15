@@ -1,0 +1,18 @@
+=== Etudiant ===
+Nom:KAMATE
+Prenom:Ali
+Mot de passe hash:e3drPrDk5lGa7u81ceg7bj7f4B6flyHHQtgy+7NOtA4=
+Mot de passe salt:4owVLWgU008tAIPHpI1bZQ==
+
+=== Etudiant ===
+Nom:SISSOKO
+Prenom:Mamadou
+Mot de passe hash:1jFEZoEy+rqAV+2CQBqnFW+M0lgIrRywTGchdZijxlY=
+Mot de passe salt:9F2zZLisOMvh7cKh8Xwm1w==
+
+
+--- Matiere ---
+Etudiant:SISSOKO_Mamadou
+Nom:Physique
+DateExamen:2025-11-12
+Difficulte:2

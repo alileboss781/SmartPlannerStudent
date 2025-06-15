@@ -15,6 +15,12 @@ public class Student extends  Person {
         this.saltBase64 = saltBase64;
     }
 
+    public Student() {
+        super();
+        this.matieres = new ArrayList<>();
+    }
+
+
     public String getMotDePasseHash() {
         return motDePasseHash;
     }

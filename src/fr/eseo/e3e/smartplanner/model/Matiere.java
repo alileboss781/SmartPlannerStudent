@@ -14,6 +14,10 @@ public class Matiere {
         this.difficulte = difficulte;
     }
 
+    public Matiere() {
+
+    }
+
     public String getNom() {
         return nom;
     }

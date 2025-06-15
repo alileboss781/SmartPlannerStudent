@@ -15,6 +15,10 @@ public class Person {
         this.firsname = firsname;
     }
 
+    public Person() {
+
+    }
+
     public String getSurname() {
         return surname;
     }
